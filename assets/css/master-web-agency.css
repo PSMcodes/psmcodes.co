@@ -9129,10 +9129,10 @@ section {
     background-color: var(--theme);
     display: inline-flex;
     align-items: center;
-    padding-top: 19px;
+    /* padding-top: -69px; */
     border-radius: 47px;
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
+    /* writing-mode: vertical-lr; */
+    /* transform: rotate(180deg); */
     color: var(--primary)
 }
 
