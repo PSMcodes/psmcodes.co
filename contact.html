@@ -270,26 +270,26 @@
                     </ul>
                   </div>
                   <div class="contact-wrap has_fade_anim" data-delay="0.30">
-                    <form action="#">
+                    <form action="#" id="contact-form">
                       <div class="contact-formwrap">
                         <div class="contact-formfield">
-                          <input type="text" name="Name" id="Name" placeholder="Name*">
+                          <input type="text" name="name" id="Name" placeholder="Name*">
                         </div>
                         <div class="contact-formfield">
-                          <input type="text" name="Email" id="Email" placeholder="Email*">
+                          <input type="text" name="email" id="Email" placeholder="Email*">
                         </div>
                         <div class="contact-formfield">
-                          <input type="text" name="Phone" id="Phone" placeholder="Phone">
+                          <input type="text" name="phone" id="Phone" placeholder="Phone">
                         </div>
                         <div class="contact-formfield">
-                          <input type="text" name="Subject" id="Subject" placeholder="Subject*">
+                          <input type="text" name="subject" id="Subject" placeholder="Subject*">
                         </div>
                         <div class="contact-formfield messages">
-                          <input type="text" name="Messages" id="Messages" placeholder="Messages*">
+                          <input type="text" name="messages" id="Messages" placeholder="Messages*">
                         </div>
                       </div>
                       <div class="submit-btn">
-                        <button type="submit" class="wc-btn wc-btn-primary btn-text-flip"><span
+                        <button type="submit" class="wc-btn wc-btn-primary btn-text-flip" id="submit-btn"><span
                             data-text="Send Message">Send Message</span></button>
                       </div>
                     </form>
@@ -371,6 +371,7 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/error-handling.js"></script>
   <script src="assets/js/offcanvas.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <script>
 
@@ -404,6 +405,44 @@
       });
     }
 
+
+    (function () {
+            // https://dashboard.emailjs.com/ad min/account
+            emailjs.init({
+                publicKey: "AvdxnTthcJ_pJALEn",
+            });
+        })();
+        let form = document.getElementById('contact-form')
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            // these IDs from the previous steps
+            document.getElementById('submit-btn').setAttribute('disabled',true);
+            let message = `
+                ${form.subject.value} 
+                ${form.messages.value} 
+                This is my mail ${form.email.value} and my contact no ${form.phone.value}
+            ` 
+            emailjs.send("service_oddt5w2", "template_awr1rxr", {
+                from_name: form.name.value,
+                to_name: 'PSMcodes Team',
+                message: message,
+                subjet:form.messages.value
+            }).then(() => {
+                console.log('SUCCESS!');
+                alert("Message Send SuccessFully")
+            }, (error) => {
+                console.error('FAILED...', error);
+                alert('FAILED...', error);
+            }).then(()=>{
+                form.name.value = ''
+                form.phone.value = ''
+                form.email.value = ''
+                form.subject.value = ''
+                form.messages.value = ''
+                
+            });
+            document.getElementById('submit-btn').removeAttribute('disabled');
+        });
   </script>
 
 </body>
