@@ -8124,3 +8124,9 @@
   background-size: cover;
   background-position: center center;
 }
+
+@media (max-width:600px) {
+  .about-card{
+    display: none !important;
+  }
+}
