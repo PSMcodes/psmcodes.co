@@ -4676,7 +4676,7 @@ section {
 }
 .progress-wrap::after {
   position: absolute;
-  content: "ï¢";
+  content: "";
   font: var(--fa-font-solid);
   text-align: center;
   line-height: 46px;
@@ -7289,7 +7289,7 @@ section {
   text-transform: capitalize;
 }
 :root {
-  --theme: #121212;
+  --theme: #a7c7e7;
 }
 :root .dark {
   --border: #252525;
