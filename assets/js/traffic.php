@@ -63,7 +63,7 @@ function getRandomUserAgent() {
 }
 
 $randomSite = $websites[array_rand($websites)];
-$url = "https://psmcodes.com"; // Your website link
+$url = "https://www.psmcodes.com"; // Your website link
 
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_REFERER, $randomSite);
